@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://fashion-ecommerce-backend.onrender.com/api/$1" },
+    { "source": "/api/(.*)", "destination": "https://fashion-e-commerce-v43i.onrender.com/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
