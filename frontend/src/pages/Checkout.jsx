@@ -95,7 +95,7 @@ const Checkout = () => {
       city: '',
       state: '',
       postalCode: '',
-      country: 'United States',
+      country: 'India',
       phone: user?.phone || '',
     },
   });

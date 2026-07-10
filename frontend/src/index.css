@@ -100,3 +100,28 @@
     background-position: -200% 0;
   }
 }
+
+/* Global input, textarea, and select field style overrides for readability */
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="file"]):not([type="image"]),
+textarea,
+select {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+
+/* Make placeholder text clearly visible */
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="file"]):not([type="image"])::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important; /* Slate gray placeholder for clear visibility */
+  opacity: 0.8 !important;   /* Standard readable opacity */
+}
+
+/* Ensure browser autofill backgrounds remain white with black text */
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="file"]):not([type="image"]):-webkit-autofill,
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="file"]):not([type="image"]):-webkit-autofill:hover, 
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="file"]):not([type="image"]):-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
