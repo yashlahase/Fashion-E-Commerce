@@ -5,14 +5,14 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import Loader from '../components/ui/Loader';
-import { Landmark, CreditCard, ChevronRight, ShoppingBag, Truck } from 'lucide-react';
+import { Landmark, CreditCard, ChevronRight, ShoppingBag, Truck, Banknote } from 'lucide-react';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { cart, coupon, discountAmount, finalPrice, clearCartLocally } = useCart();
   
-  const [paymentMethod, setPaymentMethod] = useState('Credit Card');
+  const [paymentMethod, setPaymentMethod] = useState('COD');
   const [submittingOrder, setSubmittingOrder] = useState(false);
   const [step, setStep] = useState(1); // 1: Shipping Address, 2: Payment & Review
 
@@ -365,7 +365,24 @@ const Checkout = () => {
                   <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-slate-850 dark:bg-slate-900">
                     <h2 className="text-lg font-bold text-gray-950 dark:text-slate-50">Select Payment Method</h2>
                     
-                    <div className="mt-4 grid grid-cols-2 gap-4">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {/* Cash on Delivery option */}
+                      <button
+                        type="button"
+                        onClick={() => setPaymentMethod('COD')}
+                        className={`flex flex-col items-center gap-3 rounded-xl border p-4 transition text-center ${
+                          paymentMethod === 'COD'
+                            ? 'border-primary-600 bg-primary-50/20 text-primary-900 dark:border-primary-500 dark:bg-primary-950/20 dark:text-primary-100'
+                            : 'border-gray-200 text-gray-600 dark:border-slate-800 dark:text-slate-400 hover:bg-gray-50/50'
+                        }`}
+                      >
+                        <Banknote size={24} />
+                        <div>
+                          <p className="text-sm font-bold">Cash on Delivery</p>
+                          <p className="text-[10px] text-gray-400">Pay when order is delivered</p>
+                        </div>
+                      </button>
+
                       {/* Credit Card option */}
                       <button
                         type="button"
