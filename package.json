@@ -1,0 +1,17 @@
+{
+  "name": "fashion-ecommerce",
+  "version": "1.0.0",
+  "description": "Full Stack Fashion E-Commerce Platform",
+  "main": "backend/server.js",
+  "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "seed": "npm run seed --prefix backend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
+    "test": "npm run test --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
