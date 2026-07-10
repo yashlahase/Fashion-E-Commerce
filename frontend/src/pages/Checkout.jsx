@@ -125,7 +125,7 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = async (addressData) => {
-    if (paymentMethod === 'Credit Card' || paymentMethod === 'Debit Card') {
+    if (paymentMethod === 'Card') {
       const isCardValid = validateCard();
       if (!isCardValid) {
         return;
@@ -153,7 +153,7 @@ const Checkout = () => {
         },
         paymentMethod,
         couponCode: coupon?.code || '',
-        paymentInfo: (paymentMethod === 'Credit Card' || paymentMethod === 'Debit Card') ? {
+        paymentInfo: paymentMethod === 'Card' ? {
           cardMasked: `•••• •••• •••• ${cardNumber.replace(/\s+/g, '').slice(-4)}`,
           cardType,
         } : undefined,
@@ -365,7 +365,7 @@ const Checkout = () => {
                   <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-slate-850 dark:bg-slate-900">
                     <h2 className="text-lg font-bold text-gray-950 dark:text-slate-50">Select Payment Method</h2>
                     
-                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Cash on Delivery option */}
                       <button
                         type="button"
@@ -383,43 +383,26 @@ const Checkout = () => {
                         </div>
                       </button>
 
-                      {/* Credit Card option */}
+                      {/* Credit/Debit Card option */}
                       <button
                         type="button"
-                        onClick={() => setPaymentMethod('Credit Card')}
+                        onClick={() => setPaymentMethod('Card')}
                         className={`flex flex-col items-center gap-3 rounded-xl border p-4 transition text-center ${
-                          paymentMethod === 'Credit Card'
+                          paymentMethod === 'Card'
                             ? 'border-primary-600 bg-primary-50/20 text-primary-900 dark:border-primary-500 dark:bg-primary-950/20 dark:text-primary-100'
                             : 'border-gray-200 text-gray-600 dark:border-slate-800 dark:text-slate-400 hover:bg-gray-50/50'
                         }`}
                       >
                         <CreditCard size={24} />
                         <div>
-                          <p className="text-sm font-bold">Credit Card</p>
-                          <p className="text-[10px] text-gray-400">Pay via Credit Card</p>
-                        </div>
-                      </button>
-
-                      {/* Debit Card option */}
-                      <button
-                        type="button"
-                        onClick={() => setPaymentMethod('Debit Card')}
-                        className={`flex flex-col items-center gap-3 rounded-xl border p-4 transition text-center ${
-                          paymentMethod === 'Debit Card'
-                            ? 'border-primary-600 bg-primary-50/20 text-primary-900 dark:border-primary-500 dark:bg-primary-950/20 dark:text-primary-100'
-                            : 'border-gray-200 text-gray-600 dark:border-slate-800 dark:text-slate-400 hover:bg-gray-50/50'
-                        }`}
-                      >
-                        <CreditCard size={24} />
-                        <div>
-                          <p className="text-sm font-bold">Debit Card</p>
-                          <p className="text-[10px] text-gray-400">Pay via Debit Card</p>
+                          <p className="text-sm font-bold">Credit / Debit Card</p>
+                          <p className="text-[10px] text-gray-400">Pay via Credit or Debit Card</p>
                         </div>
                       </button>
                     </div>
 
                     {/* Credit/Debit Card Interactive Form */}
-                    {(paymentMethod === 'Credit Card' || paymentMethod === 'Debit Card') && (
+                    {paymentMethod === 'Card' && (
                       <div className="mt-6 border-t border-gray-150 pt-6 dark:border-slate-800 space-y-6 animate-fade-in text-left">
                         <div className="flex flex-col md:flex-row gap-6 items-center">
                           {/* Live Mockup Card */}
